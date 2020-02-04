@@ -2,6 +2,7 @@ BackEnd/.gradle
 BackEnd/build
 BackEnd/bin
 BackEnd/build
+BackEnd/gradle
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**

@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   database:
-    container_name: mysql_container
+    container_name: todo_mysql_container
     restart: always
     build:
       context: ./DataBase/mysql
@@ -22,17 +22,20 @@ services:
       - ./DataBase/mysql/config:/etc/mysql/conf.d
 
   backend:
-    container_name: spring_container
+    container_name: todo_spring_container
     restart: always
-    build:
-      context: ./BackEnd
-      dockerfile: Dockerfile
+    working_dir: /var/app
+    image: adoptopenjdk/openjdk11:alpine
+    entrypoint: "./gradlew bootrun"
+    depends_on:
+      - database
     ports:
       - "8080:8080"
       # for remote debug
       - "5005:5005"
     volumes:
-      - ./BackEnd:/app
+      - "./BackEnd:/var/app"
+      - "~/.gradle:/root/.gradle"
     environment:
       spring.datasource.driverClassName: "com.mysql.cj.jdbc.Driver"
       spring.datasource.url: "jdbc:mysql://database/starter?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false"

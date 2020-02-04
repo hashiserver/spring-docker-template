@@ -1,10 +1,49 @@
 spring:
+  profiles:
+    active: docker
+---
+spring:
+  profiles: localhost
+  jackson:
+    date-format: yyyy/MM/dd'T'HH:mm:ss.SSSZ
+    time-zone: Asia/Tokyo
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/starter
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/starter
     username: user
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        WEB: DEBUG
+        data: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+---
+spring:
+  profiles: docker
+  jackson:
+    date-format: yyyy/MM/dd'T'HH:mm:ss.SSSZ
+    time-zone: Asia/Tokyo
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/starter
+    username: user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        WEB: DEBUG
+        data: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
