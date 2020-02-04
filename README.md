@@ -29,7 +29,7 @@ MYSQL_ROOT_PASSWORD=
 [@hashiserver](https://twitter.com/hashimo326_g)
 
 - mail to: 
-hashimotoren@team-lab.com
+hashiserver@gmail.com
 
 ## License
 
